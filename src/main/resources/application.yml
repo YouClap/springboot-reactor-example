@@ -1,0 +1,12 @@
+
+spring:
+    application:
+        name: SpringBootExample
+    profiles:
+        active: local
+
+
+
+
+server:
+    port: 8080

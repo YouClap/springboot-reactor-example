@@ -1,0 +1,6 @@
+#!/bin/bash
+
+
+# Run code style rules before push
+./gradlew detekt
+

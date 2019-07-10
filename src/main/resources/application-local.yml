@@ -1,0 +1,12 @@
+#debug: true
+
+spring:
+    profiles: local
+
+
+database:
+    host: localhost
+    database: cenas
+    port: 3306
+    username: cenas
+    password: cenas
