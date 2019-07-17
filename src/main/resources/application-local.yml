@@ -10,3 +10,7 @@ database:
     port: 3306
     username: cenas
     password: cenas
+
+
+server:
+    port: 8080
