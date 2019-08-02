@@ -15,19 +15,14 @@ BuildMR:
   image: openjdk:8-jdk-alpine
   extends: .build_mr_template
   script:
-    - ./gradlew build
+    - sh gradlew build
+    - sh gradlew bootJar
 
 LintMR:
   image: openjdk:8-jdk-alpine
   extends: .lint_mr_template
   script:
-    - ./gradlew detekt
-
-#TestMR:
-#  image: openjdk:8-jdk-alpine
-#  extends: .test_mr_template
-#  script:
-#    - ./gradlew test
+    - sh gradlew detekt
 
 
 
@@ -39,7 +34,7 @@ BuildDev:
   extends: .build_dev_template
   image: openjdk:8-jdk-alpine
   script:
-    - ./gradlew build
+    - sh gradlew build
   artifacts:
     paths:
       - build/libs/springbootexample.jar
@@ -50,7 +45,7 @@ BuildProd:
   extends: .build_prod_template
   image: openjdk:8-jdk-alpine
   script:
-    - ./gradlew build
+    - sh gradlew build
   artifacts:
     paths:
       - build/libs/springbootexample.jar
