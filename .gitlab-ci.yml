@@ -1,0 +1,57 @@
+include:
+  - remote: 'https://raw.githubusercontent.com/YouClap/Playbook/master/Backend/templates/gitlab-ci/master-gitlab-ci.yml'
+
+variables:
+  NAME: springbootexample
+
+
+
+######################
+# Merge request jobs #
+######################
+
+
+BuildMR:
+  image: openjdk:8-jdk-alpine
+  extends: .build_mr_template
+  script:
+    - ./gradlew build
+
+LintMR:
+  image: openjdk:8-jdk-alpine
+  extends: .lint_mr_template
+  script:
+    - ./gradlew detekt
+
+#TestMR:
+#  image: openjdk:8-jdk-alpine
+#  extends: .test_mr_template
+#  script:
+#    - ./gradlew test
+
+
+
+##############
+# Build jobs #
+##############
+
+BuildDev:
+  extends: .build_dev_template
+  image: openjdk:8-jdk-alpine
+  script:
+    - ./gradlew build
+  artifacts:
+    paths:
+      - build/libs/springbootexample.jar
+    expire_in: 1 hour
+
+
+BuildProd:
+  extends: .build_prod_template
+  image: openjdk:8-jdk-alpine
+  script:
+    - ./gradlew build
+  artifacts:
+    paths:
+      - build/libs/springbootexample.jar
+    expire_in: 1 hour
